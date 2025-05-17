@@ -1,25 +1,21 @@
-import { getDatabase, ref, set } from 'firebase/database';
-import { app } from './firebase/config'; 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/home/Home';
+import NoPage from './Pages/noPage/NoPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './App.css';
+// Import Login when it's created
 
-const db = getDatabase(app); 
-
-const App = () => {
-
-  const putData = () => {
-    set(ref(db, 'users/piyush'), {
-      id: 1,
-      name: "piyush",
-      age: 21, 
-    });
-  };
-
+function App() {
   return (
-    <div>
-      <h1>Hello world..!</h1>
-      <button onClick={putData}>Put data</button>
-    </div>
+    <Router>
+      <Routes>
+
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NoPage/>} />
+        {/* Add /login route later */}
+      </Routes>
+    </Router>
   );
 }
 
